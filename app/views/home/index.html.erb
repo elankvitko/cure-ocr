@@ -1,0 +1,34 @@
+<h1>Please type in patient's year of birth</h1>
+
+<%= form_tag({:action => 'ocr_checker'}, {:multipart => true}) do %>
+  <div class="form-group">
+    <%= file_field_tag 'picture' %>
+    <br>
+    <%= submit_tag 'Submit' %>
+  </div>
+<% end %>
+
+<p class="response"></p>
+
+<script type="text/javascript">
+
+</script>
+
+<!-- <script type="text/javascript">
+  $( document ).ready( function() {
+    var plug = $( ".dob" )
+    $( ".dob-check" ).on( "submit", function( e ) {
+      e.preventDefault();
+
+      var year = parseInt( e.target[ 0 ].value )
+
+      if ( 2017 - year >= 65 ) {
+        var ask = "Please submit 2 cards for verification"
+        $( ".response" ).html( ask )
+      } else {
+        var dw = "Don't worry about it"
+        $( ".response" ).html( dw )
+      }
+    })
+  })
+</script> -->
