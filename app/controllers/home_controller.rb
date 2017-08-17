@@ -16,6 +16,7 @@ class HomeController < ApplicationController
 
     ocr_text = ocr_result[ 0 ].to_a[ 2 ].join( " " ).downcase
 
-    redirect_to controller: 'instructions', action: 'index', ocr_text: ocr_text
+    session[ :ocr_text ] = ocr_text
+    redirect_to controller: 'instructions', action: 'index'
   end
 end

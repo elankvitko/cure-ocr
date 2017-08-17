@@ -21,6 +21,8 @@ gem 'cloudinary'
 
 gem 'ocr_space'
 
+gem 'similar_text'
+
 gem 'pry-rails'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby

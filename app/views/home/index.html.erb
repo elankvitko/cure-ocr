@@ -1,34 +1,76 @@
-<h1>Please type in patient's year of birth</h1>
+<h1>Please type in patient's Date of Birth:</h1>
 
-<%= form_tag({:action => 'ocr_checker'}, {:multipart => true}) do %>
-  <div class="form-group">
-    <%= file_field_tag 'picture' %>
-    <br>
-    <%= submit_tag 'Submit' %>
+<div id="section dob">
+  <div class="dob-form-holder">
+    <form class="dob-check" method="get">
+      <input type="date" name="dob">
+      <br>
+      <input type="submit" value="Next">
+    </form>
   </div>
-<% end %>
+</div>
+
+<div class="section ocr-single">
+  <div class="form-single-head">
+    <h3>Please provide patient's insurance card photo:</h3>
+  </div>
+  <div class="single-ocr-form-holder">
+    <%= form_tag({:action => 'ocr_checker'}, {:class => "ocr-single", :multipart => true} ) do %>
+    <div class="form-group">
+      <%= file_field_tag 'picture' %>
+      <br>
+      <%= submit_tag 'Submit' %>
+    </div>
+    <% end %>
+  </div>
+</div>
+
+<div class="section over-inst">
+  <h3>Please ask patient for 2 insurance cards (Medicare, Medicare Advantage, or Medicare Supplimental)</h3>
+  <p>Some patients who are dual eligible will have an additional Medicaid card.</p>
+
+  <br>
+
+  <p>Does patient have Medicare card available?</p>
+  <form class="yesno" action="/check" method="get">
+    <select name="choice">
+      <option value="yes">Yes</option>
+      <option value="no">No</option>
+    </select>
+    <br>
+    <input type="submit" value="Next">
+  </form>
+  <p class="hide-on-yesno">
+    If patient does not have Medicare card available, please ask for social and check eligibility <a href="https://login.healthfusion.com/" target="_blank">Here</a>
+    <br>
+    When checking, please try each of the following codes in combination with the social:
+    <ul class="hide-on-yesno">
+      <li>A</li>
+      <li>B</li>
+      <li>C</li>
+      <li>T</li>
+    </ul>
+  </p>
+</div>
+
+<div class="section ocr-double">
+  <div class="double-ocr-form-holder">
+    <%= form_tag({:action => 'ocr_checker'}, {:class => "ocr-double", :multipart => true} ) do %>
+    <div class="form-group">
+      <div class="form-double-head">
+        <p>Please provide Medicare insurance card:</p>
+      </div>
+      <label for="medicare">Medicare Insurance Card</label>
+      <br>
+      <%= file_field_tag 'picture' %>
+      <br>
+      <br>
+      <%= submit_tag 'Submit' %>
+    </div>
+    <% end %>
+  </div>
+</div>
 
 <p class="response"></p>
 
-<script type="text/javascript">
-
-</script>
-
-<!-- <script type="text/javascript">
-  $( document ).ready( function() {
-    var plug = $( ".dob" )
-    $( ".dob-check" ).on( "submit", function( e ) {
-      e.preventDefault();
-
-      var year = parseInt( e.target[ 0 ].value )
-
-      if ( 2017 - year >= 65 ) {
-        var ask = "Please submit 2 cards for verification"
-        $( ".response" ).html( ask )
-      } else {
-        var dw = "Don't worry about it"
-        $( ".response" ).html( dw )
-      }
-    })
-  })
-</script> -->
+<%= javascript_include_tag 'home' %>
