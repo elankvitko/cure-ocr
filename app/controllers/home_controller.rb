@@ -4,6 +4,10 @@ class HomeController < ApplicationController
   end
 
   def ocr_checker
+    if params[ :secondary ]
+      @secondary = params[ :secondary ]
+    end
+
     uploaded_io = params[ :picture ]
 
     file = File.open( Rails.root.join('public', 'uploads', uploaded_io.original_filename ), 'wb' ) do |file|
@@ -17,6 +21,6 @@ class HomeController < ApplicationController
     ocr_text = ocr_result[ 0 ].to_a[ 2 ].join( " " ).downcase
 
     session[ :ocr_text ] = ocr_text
-    redirect_to controller: 'instructions', action: 'index'
+    redirect_to controller: 'instructions', action: 'index', secondary: @secondary
   end
 end

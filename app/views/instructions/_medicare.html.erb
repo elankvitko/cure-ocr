@@ -1,5 +1,9 @@
 <h1>Medicare Instructions</h1>
 
+<% if params[ :secondary ] %>
+  <h1>PLEASE UPLOAD <%= params[ :secondary ] %> AS SECONDARY IN MEDITOUCH!</h1>
+<% end %>
+
 <p>Please follow the steps below:</p>
 
 <ul>
